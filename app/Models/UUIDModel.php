@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
 class UUIDModel extends Model {
-	protected $keyType = 'string';
+    protected $keyType = 'string';
 
-	public $incrementing = false;
+    public $incrementing = false;
 
-	protected static function boot() {
-		parent::boot();
+    protected static function boot() {
+        parent::boot();
 
-		static::creating(function ($model) {
-			$model->id = Uuid::uuid4()->toString();
-		});
-	}
+        static::creating(function ($model) {
+            $model->id = Uuid::uuid4()->toString();
+        });
+    }
 }
