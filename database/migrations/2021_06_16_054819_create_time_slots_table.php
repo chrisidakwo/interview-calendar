@@ -13,7 +13,7 @@ class CreateTimeSlotsTable extends Migration {
     public function up() {
         Schema::create('time_slots', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('day', 9);
+            $table->tinyInteger('day');
             $table->string('start_time', 5);
             $table->string('end_time', 5);
             $table->timestamps();

@@ -3,11 +3,22 @@
 namespace App\Domain\Interview\Models;
 
 use App\Models\UUIDModel;
+use Database\Factories\InterviewFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Interview extends UUIDModel {
-    /**
+	use HasFactory;
+
+	/**
+	 * @return InterviewFactory
+	 */
+	protected static function newFactory(): InterviewFactory {
+		return InterviewFactory::new();
+	}
+
+	/**
      * @return array
      */
     public function getAvailableSlots(): array {
