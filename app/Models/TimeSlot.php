@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Domain\Interview\Models;
+namespace App\Models;
 
-use App\Models\UUIDModel;
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

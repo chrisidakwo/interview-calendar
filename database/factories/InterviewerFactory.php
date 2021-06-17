@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Domain\Interview\Models\Interviewer;
-use App\Domain\Interview\Models\TimeSlot;
+use App\Models\Interviewer;
+use App\Models\TimeSlot;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 

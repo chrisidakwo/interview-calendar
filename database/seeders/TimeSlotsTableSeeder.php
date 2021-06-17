@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Domain\Interview\Models\TimeSlot;
+use App\Models\TimeSlot;
 use Illuminate\Database\Seeder;
 
 class TimeSlotsTableSeeder extends Seeder {

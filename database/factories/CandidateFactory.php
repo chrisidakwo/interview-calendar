@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Domain\Interview\Models\Candidate;
+use App\Models\Candidate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CandidateFactory extends Factory {

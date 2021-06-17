@@ -1,7 +1,6 @@
 # Interview Calendar
 
 # TODO
-- Migrate tables
 - Allow creating of interviewers account
 - View list of interviewers
 - Interviewers can add availability

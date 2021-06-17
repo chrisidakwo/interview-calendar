@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Domain\Interview\Models\Interview;
-use App\Domain\Interview\Models\TimeSlot;
+use App\Models\Interview;
+use App\Models\TimeSlot;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;

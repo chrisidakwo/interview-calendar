@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Interview\Services;
+namespace App\Services;
 
 use App\Domain\Interview\Repositories\InterviewRepository;
 

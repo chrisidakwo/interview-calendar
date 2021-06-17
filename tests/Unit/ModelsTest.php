@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Domain\Interview\Models\Candidate;
-use App\Domain\Interview\Models\Interview;
-use App\Domain\Interview\Models\Interviewer;
+use App\Models\Candidate;
+use App\Models\Interview;
+use App\Models\Interviewer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
