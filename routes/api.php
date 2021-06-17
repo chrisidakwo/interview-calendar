@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InterviewerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
+});
+
+Route::group(['prefix' => 'interviewers'], function () {
+	Route::get('', [InterviewerController::class, 'index']);
+	Route::post('', [InterviewerController::class, 'store']);
 });

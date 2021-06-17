@@ -36,7 +36,7 @@ class InterviewerFactory extends Factory {
         $availability = [];
 
         for ($i = 1; $i <= $count; $i++) {
-            $availability[] = [Arr::random(TimeSlot::DAYS) => Arr::random(TimeSlot::SLOTS)];
+            $availability[] = [Arr::random(array_keys(TimeSlot::DAYS)) => Arr::random(TimeSlot::SLOTS)];
         }
 
         return $availability;

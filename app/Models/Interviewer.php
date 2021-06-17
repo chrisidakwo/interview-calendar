@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Interviewer extends UUIDModel {
     use HasFactory;
 
+    protected $guarded = [''];
+
     protected $casts = [
         'availability' => 'array'
     ];
