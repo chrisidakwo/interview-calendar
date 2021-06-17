@@ -8,20 +8,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Interviewer extends UUIDModel {
-	use HasFactory;
+    use HasFactory;
 
     protected $casts = [
         'availability' => 'array'
     ];
 
-	/**
-	 * @return InterviewerFactory
-	 */
+    /**
+     * @return InterviewerFactory
+     */
     protected static function newFactory(): InterviewerFactory {
-    	return InterviewerFactory::new();
+        return InterviewerFactory::new();
     }
 
-	/**
+    /**
      * @return BelongsToMany
      */
     public function interviews(): BelongsToMany {

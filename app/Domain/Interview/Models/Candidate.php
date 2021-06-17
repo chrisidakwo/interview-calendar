@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Candidate extends UUIDModel {
-	use HasFactory;
+    use HasFactory;
 
-	/**
-	 * @return CandidateFactory
-	 */
-	protected static function newFactory(): CandidateFactory {
-		return CandidateFactory::new();
-	}
+    /**
+     * @return CandidateFactory
+     */
+    protected static function newFactory(): CandidateFactory {
+        return CandidateFactory::new();
+    }
 
-	/**
+    /**
      * @return BelongsTo
      */
     public function interview(): BelongsTo {

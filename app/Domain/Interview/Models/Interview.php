@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Interview extends UUIDModel {
-	use HasFactory;
+    use HasFactory;
 
-	/**
-	 * @return InterviewFactory
-	 */
-	protected static function newFactory(): InterviewFactory {
-		return InterviewFactory::new();
-	}
+    /**
+     * @return InterviewFactory
+     */
+    protected static function newFactory(): InterviewFactory {
+        return InterviewFactory::new();
+    }
 
-	/**
+    /**
      * @return array
      */
     public function getAvailableSlots(): array {
