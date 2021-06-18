@@ -1,0 +1,19 @@
+.breadcrumbs {
+  @apply font-medium;
+
+  li {
+    @apply flex items-center cursor-pointer;
+
+    > svg {
+      @apply mx-2 cursor-default;
+    }
+
+    &:first-child {
+      @apply pl-0;
+    }
+
+    > a {
+      @apply text-indigo-600 hover:text-indigo-800;
+    }
+  }
+}

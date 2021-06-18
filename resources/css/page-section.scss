@@ -1,0 +1,11 @@
+.page-actions {
+  @apply flex justify-start items-center mb-6;
+}
+
+.page-section {
+  @apply mb-8;
+
+  .title {
+    @apply text-xl mb-2;
+  }
+}
