@@ -23,8 +23,7 @@
     <div class="routes">
         <ul class="inline-flex">
             <li>
-                <a class="text-teal-600 px-2 hover:underline font-medium" href="{{ route('dashboard', ['type' => 'interviewer']) }}">Interviewer Dashboard</a>
-                <a class="text-teal-600 px-2 hover:underline font-medium" href="{{ route('dashboard', ['type' => 'candidate']) }}">Candidate Dashboard</a>
+                <a class="text-teal-600 px-2 hover:underline font-medium" href="{{ route('dashboard') }}">Dashboard</a>
             </li>
         </ul>
     </div>

@@ -25,7 +25,7 @@ class CreateInterviewsTable extends Migration {
         Schema::table('interviews', function (Blueprint $table) {
             $table->foreign('candidate_id')
                 ->references('id')
-                ->on('candidates')
+                ->on('users')
                 ->cascadeOnDelete();
         });
     }

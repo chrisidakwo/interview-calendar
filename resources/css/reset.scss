@@ -5,7 +5,7 @@ input, select, textarea, button, div, a {
 }
 
 body {
-  @apply text-gray-700 font-medium bg-gray-100;
+  @apply text-sm text-gray-700 font-medium bg-gray-100;
 }
 
 h1 {
@@ -45,4 +45,8 @@ h6 {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.011em;
+}
+
+.form-input {
+  @apply border-gray-300 font-medium;
 }

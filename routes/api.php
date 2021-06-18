@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\InterviewerController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::group(['prefix' => 'interviewers'], function () {
-    Route::get('', [InterviewerController::class, 'index']);
-    Route::post('', [InterviewerController::class, 'store']);
+Route::group(['prefix' => 'users'], function () {
+    Route::get('', [UserController::class, 'index']);
+    Route::post('', [UserController::class, 'store']);
 });

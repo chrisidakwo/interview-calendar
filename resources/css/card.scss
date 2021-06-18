@@ -5,7 +5,7 @@
   flex-direction: column;
   border-radius: 4px;
   overflow: hidden;
-  @apply shadow-sm;
+  @apply shadow-sm w-full;
 
   .header {
     position: relative;
@@ -23,6 +23,10 @@
   }
 
   .content {
-    @apply mx-8 my-4;
+    @apply mx-8 mt-4;
+
+    .footer {
+      @apply bg-gray-200 -mx-8 mt-4 px-8 py-6;
+    }
   }
 }

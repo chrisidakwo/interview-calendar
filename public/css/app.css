@@ -574,6 +574,8 @@ input:focus, input:active, select:focus, select:active, textarea:focus, textarea
 body {
   --tw-bg-opacity: 1;
   background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
   --tw-text-opacity: 1;
   color: rgba(51, 65, 85, var(--tw-text-opacity));
@@ -616,6 +618,12 @@ h6 {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.011em;
+}
+
+.form-input {
+  --tw-border-opacity: 1;
+  border-color: rgba(203, 213, 225, var(--tw-border-opacity));
+  font-weight: 500;
 }
 
 /* Components */
@@ -885,6 +893,7 @@ h6 {
   flex-direction: column;
   border-radius: 4px;
   overflow: hidden;
+  width: 100%;
   --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
@@ -916,7 +925,18 @@ h6 {
   margin-left: 2rem;
   margin-right: 2rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+}
+
+.card .content .footer {
+  margin-left: -2rem;
+  margin-right: -2rem;
+  margin-top: 1rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(226, 232, 240, var(--tw-bg-opacity));
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 /* Utilities */

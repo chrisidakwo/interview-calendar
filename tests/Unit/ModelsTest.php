@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Candidate;
 use App\Models\Interview;
 use App\Models\Interviewer;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -17,10 +18,10 @@ class ModelsTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function test_candidate_model_can_be_persisted() {
-		$candidates = Candidate::factory()->count(3)->create();
+	public function test_user_model_can_be_persisted() {
+		$candidates = User::factory()->count(3)->candidate()->create();
 
-		$this->assertDatabaseCount('candidates', 3);
+		$this->assertDatabaseCount('users', 3);
 
 		$this->assertInstanceOf(Collection::class, $candidates);
 	}
@@ -33,10 +34,10 @@ class ModelsTest extends TestCase {
 		$this->assertInstanceOf(Collection::class, $interviews);
 	}
 
-	public function test_interviewer_model_can_be_persisted() {
-		$interviewers = Interviewer::factory()->count(4)->create();
+	public function test_interviewer_can_be_created() {
+		$interviewers = User::factory()->count(4)->interviewer()->create();
 
-		$this->assertDatabaseCount('interviewers', 4);
+		$this->assertDatabaseCount('users', 4);
 
 		$this->assertInstanceOf(Collection::class, $interviewers);
 	}

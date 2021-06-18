@@ -13,10 +13,6 @@
 </head>
 <body class="antialiased">
 
-@php
-    $type = request()->route()->parameter('type') ?? 'interviewer';
-@endphp
-
 <div class="container">
     <div class="md:flex md:flex-col">
         <div class="md:h-screen md:flex md:flex-col">
@@ -27,7 +23,7 @@
                 <div class="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-md flex justify-between items-center">
                     <ul class="breadcrumbs">
                         <li>
-                            <a href="{{ route('dashboard', ['type' => $type]) }}">Dashboard</a>
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                             </svg>
@@ -35,15 +31,17 @@
 
                         @yield('breadcrumb-items')
                     </ul>
+
+                    <div>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button class="font-medium" type="submit">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="md:flex md:flex-grow md:overflow-hidden">
-                @include('includes.menu', [
-                                'dashboardUrl' => route('dashboard', ['type' => $type]),
-                                'interviewsUrl' => route('interviews', ['type' => $type]),
-                                'candidatesUrl' => route('candidates'),
-                                'availabilityUrl' => route('availability'),
-                         ])
+                @include('includes.menu')
 
                 <div class="px-4 py-8 w-full" scroll-region>
                     @include('includes.flash-message')

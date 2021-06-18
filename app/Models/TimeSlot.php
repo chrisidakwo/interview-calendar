@@ -23,9 +23,6 @@ class TimeSlot extends UUIDModel {
         ['start' => '17:00', 'end' => '18:00'],
     ];
 
-    public function interviewersAvailability() {
-    }
-
     /**
      * @return HasMany
      */

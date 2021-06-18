@@ -8,11 +8,9 @@ class InterviewController extends Controller {
     public function index(Request $request, string $type) {
     }
 
-	public function create() {
-
+    public function create() {
     }
 
-	public function store() {
-
+    public function store() {
     }
 }

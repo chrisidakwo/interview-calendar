@@ -16,9 +16,9 @@ class CreateInterviewInterviewersTable extends Migration {
                 ->cascadeOnDelete()
                 ->comment('References the interviews table');
 
-            $table->foreignUuid('interviewer_id')->constrained('interviewers')
+            $table->foreignUuid('interviewer_id')->constrained('users')
                 ->cascadeOnDelete()
-                ->comment('References the interviewers record');
+                ->comment('References the users record');
         });
     }
 

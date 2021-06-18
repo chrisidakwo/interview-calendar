@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class InterviewerStoreRequest extends FormRequest {
+class UserStoreRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,6 +25,7 @@ class InterviewerStoreRequest extends FormRequest {
         return [
             'name'         => ['required', 'string'],
             'email'        => ['required', 'email'],
+            'role'         => ['required', 'string', Rule::in([User::ROLE_ADMIN, User::ROLE_CANDIDATE, User::ROLE_INTERVIEWER])],
             'availability' => ['sometimes', 'array']
         ];
     }
