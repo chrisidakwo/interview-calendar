@@ -30,7 +30,7 @@
                         </thead>
 
                         <tbody>
-                            @if($users)
+                            @if(count($users))
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{ $user->name }}</td>
@@ -40,7 +40,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="3" class="text-center py-4">There are no interviewers</td>
+                                    <td colspan="3" class="text-center">There are no interviewers</td>
                                 </tr>
                             @endif
                         </tbody>

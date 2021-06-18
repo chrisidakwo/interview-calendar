@@ -11,11 +11,12 @@ class RoleMiddleware {
      *
      * @param Request $request
      * @param Closure $next
-     * @param string $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, string $role) {
-        if ($role && in_array($request->user()->role, explode(',', $role))) {
+    public function handle(Request $request, Closure $next) {
+        $roles = array_slice(func_get_args(), 2) ?? [];
+
+        if (!empty($roles) && in_array($request->user()->role, $roles)) {
             return $next($request);
         }
 

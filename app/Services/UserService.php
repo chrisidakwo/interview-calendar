@@ -25,8 +25,8 @@ class UserService implements UserRepository {
     /**
      * @inheritDoc
      */
-    public function listUsers(string $role, int $page = null, int $perPage = 25, $columns = ['*']): Paginator {
+    public function listUsers(string $role, array $relations = []): Paginator {
         return User::query()->where('role', $role)
-            ->simplePaginate($perPage, $columns, 'page', $page);
+            ->with($relations)->simplePaginate();
     }
 }

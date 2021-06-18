@@ -963,7 +963,7 @@ h6 {
   background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
 }
 
-.table tbody td {
+.table tbody tr td {
   border-top-width: 1px;
   padding-left: 1.5rem;
   padding-right: 1.5rem;

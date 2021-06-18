@@ -16,10 +16,10 @@
 
     tr {
       @apply hover:bg-gray-100 focus-within:bg-gray-100;
-    }
 
-    td {
-      @apply border-t px-6 py-4;
+      td {
+        @apply border-t px-6 py-4;
+      }
     }
   }
 }

@@ -22,10 +22,10 @@ class UserController extends Controller {
 
     /**
      * @param Request $request
-     * @param $type
+     * @param string|null $type
      * @return Application|Factory|View|JsonResponse
      */
-    public function index(Request $request, $type) {
+    public function index(Request $request, $type = null) {
         if (empty($type)) {
             $type = ($request->user()->role === User::ROLE_ADMIN) ? 'interviewer' : 'candidate';
         }
@@ -37,11 +37,15 @@ class UserController extends Controller {
             return view('dashboard', compact('users'));
         }
 
-        return view('candidates.index');
+        return view('candidates.index', compact('users'));
     }
 
-    public function create() {
-        return view('interviewers.create');
+    public function create(Request $request) {
+        if ($this->isAdmin()) {
+            return view('interviewers.create');
+        }
+
+        return view('candidates.create');
     }
 
     /**

@@ -11,12 +11,10 @@ interface UserRepository {
      * Return a list of interviewers.
      *
      * @param string $role
-     * @param int|null $page
-     * @param int $perPage
-     * @param string[] $columns
+     * @param array $relations
      * @return Paginator
      */
-    public function listUsers(string $role, int $page = null, int $perPage = 25, $columns = ['*']): Paginator;
+    public function listUsers(string $role, array $relations = []): Paginator;
 
     /**
      * Create a new interviewer.
