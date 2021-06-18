@@ -843,6 +843,10 @@ h6 {
   cursor: default;
 }
 
+.breadcrumbs li:last-child > svg {
+  display: none;
+}
+
 .breadcrumbs li:first-child {
   padding-left: 0px;
 }

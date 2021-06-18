@@ -36,6 +36,7 @@ Route::group(['prefix' => 'interviewer'], function () {
     Route::get('/candidates/{candidate}', [CandidateController::class, 'show'])->name('candidates.show');
 
     Route::get('/interviewers', [InterviewerController::class, 'index'])->name('interviewers');
+    Route::get('/interviewers/new', [InterviewerController::class, 'create'])->name('interviewers.create');
     Route::get('/interviewers/{interviewer}', [InterviewerController::class, 'show'])->name('interviewers.show');
 
     Route::get('/availability', [AvailabilityController::class, 'index'])->name('availability');

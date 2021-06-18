@@ -22,6 +22,10 @@ class InterviewerController extends Controller {
             : view('');
     }
 
+	public function create() {
+		return view('interviewers.create');
+    }
+
     public function store(InterviewerStoreRequest $request) {
         $name         = $request->get('name');
         $email        = $request->get('email');

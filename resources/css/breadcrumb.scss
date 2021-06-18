@@ -8,6 +8,12 @@
       @apply mx-2 cursor-default;
     }
 
+    &:last-child {
+      > svg {
+        @apply hidden;
+      }
+    }
+
     &:first-child {
       @apply pl-0;
     }
