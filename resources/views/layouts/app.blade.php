@@ -16,6 +16,7 @@
 <div class="container">
     <div class="md:flex md:flex-col">
         <div class="md:h-screen md:flex md:flex-col">
+
             <div class="md:flex md:flex-shrink-0">
                 <div class="bg-indigo-900 md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center">
                     <a href="{{ route('home') }}" class="text-white font-bold">{{ config('app.name') }}</a>
@@ -40,7 +41,8 @@
                     </div>
                 </div>
             </div>
-            <div class="md:flex md:flex-grow md:overflow-hidden">
+
+            <div class="md:flex md:flex-grow">
                 @include('includes.menu')
 
                 <div class="px-4 py-8 w-full" scroll-region>

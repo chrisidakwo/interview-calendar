@@ -34,23 +34,23 @@ class InterviewService implements InterviewRepository {
         ]);
     }
 
-	/**
-	 * @inheritDoc
-	 */
-	public function listUpcomingInterviews(array $relations = []): Paginator {
-		return Interview::query()->whereNotNull('time_slot')
-			->whereDate('time_slot', '>=', now())
-			->with($relations)
-			->simplePaginate();
-	}
+    /**
+     * @inheritDoc
+     */
+    public function listUpcomingInterviews(array $relations = []): Paginator {
+        return Interview::query()->whereNotNull('time_slot')
+            ->whereDate('time_slot', '>=', now())
+            ->with($relations)
+            ->simplePaginate();
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	public function listPastInterviewers(array $relations = []): Paginator {
-		return Interview::query()->whereNotNull('time_slot')
-			->whereDate('time_slot', '<', now())
-			->with($relations)
-			->simplePaginate();
-	}
+    /**
+     * @inheritDoc
+     */
+    public function listPastInterviewers(array $relations = []): Paginator {
+        return Interview::query()->whereNotNull('time_slot')
+            ->whereDate('time_slot', '<', now())
+            ->with($relations)
+            ->simplePaginate();
+    }
 }

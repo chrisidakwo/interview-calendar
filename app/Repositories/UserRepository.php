@@ -26,4 +26,17 @@ interface UserRepository {
      * @return Model|User
      */
     public function storeUser(string $name, string $email, string $role, array $availability = []);
+
+    /**
+     * @param string $userId
+     * @return Model|User
+     */
+    public function findUserById(string $userId);
+
+    /**
+     * @param string $userId
+     * @param array $slots
+     * @return bool
+     */
+    public function updateAvailability(string $userId, array $slots): bool;
 }

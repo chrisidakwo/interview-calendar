@@ -29,4 +29,22 @@ class UserService implements UserRepository {
         return User::query()->where('role', $role)
             ->with($relations)->simplePaginate();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function findUserById(string $userId) {
+        return User::query()->find($userId);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function updateAvailability(string $userId, array $slots): bool {
+        $user = $this->findUserById($userId);
+
+        return $user->update([
+            'availability' => $slots
+        ]);
+    }
 }
