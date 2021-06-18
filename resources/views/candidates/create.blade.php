@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create Candidates')
+
 @section('breadcrumb-items')
     <li>
         <span>New Candidate</span>

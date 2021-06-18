@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
     <section class="page-actions">
         @if(auth()->user()->role === \App\Models\User::ROLE_INTERVIEWER)

@@ -12,7 +12,7 @@ class ChangeTimeSlotColumnTypeInInterviewsTable extends Migration {
      */
     public function up() {
         Schema::table('interviews', function (Blueprint $table) {
-            $table->datetime('time_slot')->after('candidate_id');
+            $table->datetime('time_slot')->nullable()->after('candidate_id');
         });
     }
 

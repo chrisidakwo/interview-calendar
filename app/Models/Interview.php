@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Interview extends UUIDModel {
     use HasFactory;
 
+    protected $guarded = [''];
+
     /**
      * @return InterviewFactory
      */
@@ -28,13 +30,22 @@ class Interview extends UUIDModel {
      * @return HasOne
      */
     public function candidate(): HasOne {
-        return $this->hasOne(Candidate::class, 'candidate_id');
+        return $this->hasOne(User::class, 'id', 'candidate_id');
     }
 
     /**
      * @return BelongsToMany
      */
     public function interviewers(): BelongsToMany {
-        return $this->belongsToMany(Interviewer::class, 'interview_interviewers', 'interviewer_id');
+        return $this->belongsToMany(User::class, 'interview_interviewers', 'interview_id', 'interviewer_id');
+    }
+
+    /**
+     * @param string $interviewerId
+     * @return array
+     */
+    public function otherInterviewers(string $interviewerId): array {
+        return $this->interviewers()->where('interviewer_id', '!=', $interviewerId)->pluck('users.name')
+            ->toArray();
     }
 }

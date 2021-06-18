@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Candidates')
+
 @section('breadcrumb-items')
     <li>
         <span>Candidates</span>
@@ -8,9 +10,7 @@
 
 @section('content')
     <section class="page-actions">
-        @if(auth()->user()->role === \App\Models\User::ROLE_INTERVIEWER)
-            <a href="{{ route('candidates.create') }}" class="btn btn-indigo ml-3">New Candidate</a>
-        @endif
+        <a href="{{ route('candidates.create') }}" class="btn btn-indigo ml-3">New Candidate</a>
     </section>
 
     <section class="page-section">
@@ -22,11 +22,11 @@
             <div class="content m-0">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Interview Slot</th>
-                        </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Interview Slot</th>
+                    </tr>
                     </thead>
 
                     <tbody>
