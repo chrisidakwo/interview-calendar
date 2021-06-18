@@ -23,6 +23,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/schedule', [InterviewController::class, 'schedule'])->name('interviews.schedule');
     });
 
+    Route::group(['middleware' => ['role:admin,interviewer']], function () {
+        Route::post('/user', [UserController::class, 'store'])->name('users.store');
+    });
+
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/interviewers', [UserController::class, 'index'])->name('interviewers');
         Route::get('/interviewers/new', [UserController::class, 'create'])->name('interviewers.create');
@@ -33,9 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/interviews/new', [InterviewController::class, 'create'])->name('interviews.create');
         Route::post('/interviews/new', [InterviewController::class, 'store'])->name('interviews.store');
 
-        Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates');
-        Route::get('/candidates/new', [CandidateController::class, 'create'])->name('candidates.create');
-        Route::post('/candidates/new', [CandidateController::class, 'store'])->name('candidates.store');
+        Route::get('/candidates', [UserController::class, 'index'])->name('candidates');
+        Route::get('/candidates/new', [UserController::class, 'create'])->name('candidates.create');
         Route::get('/candidates/{candidate}', [CandidateController::class, 'show'])->name('candidates.show');
 
         Route::get('/availability', [AvailabilityController::class, 'index'])->name('availability');

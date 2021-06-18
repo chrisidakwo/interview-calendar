@@ -1,8 +1,6 @@
 # Interview Calendar
 
 # TODO
-- Allow creating of interviewers account
-- View list of interviewers
 - Interviewers can add availability
 - Interviewers can add candidates
 - View list of candidates

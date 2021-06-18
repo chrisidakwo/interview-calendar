@@ -3,25 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserStoreRequest;
+use App\Models\User;
 use App\Repositories\UserRepository;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller {
-    private UserRepository $interviewerRepository;
+    private UserRepository $userRepository;
 
-    public function __construct(UserRepository $interviewerRepository) {
-        $this->interviewerRepository = $interviewerRepository;
+    public function __construct(UserRepository $userRepository) {
+        $this->userRepository = $userRepository;
     }
 
-    public function index(Request $request) {
-        $interviewers = $this->interviewerRepository->listUsers();
+    /**
+     * @param Request $request
+     * @param $type
+     * @return Application|Factory|View|JsonResponse
+     */
+    public function index(Request $request, $type) {
+        if (empty($type)) {
+            $type = ($request->user()->role === User::ROLE_ADMIN) ? 'interviewer' : 'candidate';
+        }
 
-        return $request->expectsJson()
-            ? response()->json($interviewers)
-            : view('');
+        $users = $this->userRepository->listUsers($type);
+
+        $authRole = $request->user()->role;
+        if ($authRole == User::ROLE_ADMIN) {
+            return view('dashboard', compact('users'));
+        }
+
+        return view('candidates.index');
     }
 
     public function create() {
@@ -30,19 +46,26 @@ class UserController extends Controller {
 
     /**
      * @param UserStoreRequest $request
-     * @return JsonResponse|RedirectResponse|object
+     * @return RedirectResponse|object
      */
     public function store(UserStoreRequest $request) {
         $name         = $request->get('name');
         $email        = $request->get('email');
         $role         = $request->get('role');
-        $availability = $request->get('availability');
+        $availability = $request->get('availability', []);
 
-        $interviewer = $this->interviewerRepository->storeUser($name, $email, $role, $availability);
+        $interviewer = $this->userRepository->storeUser($name, $email, $role, $availability);
 
-        return $request->expectsJson()
-            ? response()->json($interviewer, Response::HTTP_CREATED)
-            : redirect()->back()->setStatusCode(Response::HTTP_CREATED);
+        $authRole = $request->user()->role;
+        if ($authRole == User::ROLE_ADMIN) {
+            session()->flash('success', 'Interviewer created');
+
+            return redirect()->route('dashboard')->setStatusCode(Response::HTTP_CREATED);
+        }
+
+        session()->flash('success', 'Candidate created');
+
+        return redirect()->route('candidates')->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function show(Request $request) {

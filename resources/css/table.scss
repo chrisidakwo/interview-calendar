@@ -1,0 +1,25 @@
+.table {
+  @apply w-full whitespace-nowrap;
+
+  thead {
+
+    tr {
+      @apply text-left font-bold;
+
+      th {
+        @apply px-6 pt-6 pb-4;
+      }
+    }
+  }
+
+  tbody {
+
+    tr {
+      @apply hover:bg-gray-100 focus-within:bg-gray-100;
+    }
+
+    td {
+      @apply border-t px-6 py-4;
+    }
+  }
+}

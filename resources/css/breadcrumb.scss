@@ -1,11 +1,11 @@
 .breadcrumbs {
-  @apply font-medium;
+  @apply inline-flex font-medium;
 
   li {
-    @apply flex items-center cursor-pointer;
+    @apply flex items-center;
 
     > svg {
-      @apply mx-2 cursor-default;
+      @apply mx-2;
     }
 
     &:last-child {

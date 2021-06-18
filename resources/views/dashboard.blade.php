@@ -8,19 +8,43 @@
         @endif
 
             @if(auth()->user()->role === \App\Models\User::ROLE_ADMIN)
-                <a href="{{ route('interviews.create') }}" class="btn btn-indigo">New Interviewer</a>
+                <a href="{{ route('interviewers.create') }}" class="btn btn-indigo">New Interviewer</a>
             @endif
     </section>
 
     @if(auth()->user()->role === \App\Models\User::ROLE_ADMIN)
         <section class="page-section">
             <div class="card">
-                <div class="header">
+                <div class="header mb-4">
                     <div class="title">Interviewers</div>
                 </div>
 
-                <div class="content">
-                    Hello world
+                <div class="content m-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Availability</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if($users)
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ '' }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="3" class="text-center py-4">There are no interviewers</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
