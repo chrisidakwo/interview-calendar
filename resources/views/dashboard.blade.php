@@ -59,8 +59,36 @@
                     <div class="title">Upcoming Interviews</div>
                 </div>
 
-                <div class="content">
-                    Hello world
+                <div class="content m-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Candidate</th>
+                            <th>Time Slot</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @if(count($upcomingInterviews))
+                            @foreach($upcomingInterviews as $upcomingInterview)
+                                <tr>
+                                    <td>{{ $upcomingInterviews->name }}</td>
+                                    <td>{{ $upcomingInterviews->candidate->name }}</td>
+                                    @if ($upcomingInterviews->time_slot)
+                                        <td>{{ $upcomingInterviews->time_slot->format('d-m-Y H:m') }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="3" class="text-center">No upcoming interviewers</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -71,8 +99,36 @@
                     <div class="title">Past Interviews</div>
                 </div>
 
-                <div class="content">
-                    Hello world
+                <div class="content m-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Candidate</th>
+                            <th>Time Slot</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @if(count($pastInterviews))
+                            @foreach($pastInterviews as $pastInterview)
+                                <tr>
+                                    <td>{{ $pastInterview->name }}</td>
+                                    <td>{{ $pastInterview->candidate->name }}</td>
+                                    @if ($pastInterview->time_slot)
+                                        <td>{{ $pastInterview->time_slot->format('d-m-Y H:m') }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="3" class="text-center">No past interviewers</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

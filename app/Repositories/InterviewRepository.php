@@ -20,4 +20,16 @@ interface InterviewRepository {
      * @return Model|Interview
      */
     public function storeInterview($name, $description, $candidate);
+
+	/**
+	 * @param array $relations
+	 * @return Paginator
+	 */
+	public function listUpcomingInterviews(array $relations = []): Paginator;
+
+	/**
+	 * @param array $relations
+	 * @return Paginator
+	 */
+	public function listPastInterviewers(array $relations = []): Paginator;
 }

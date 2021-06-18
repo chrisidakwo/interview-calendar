@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\InterviewRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,10 +12,15 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller {
     private UserRepository $userRepository;
+	/**
+	 * @var InterviewRepository
+	 */
+	private InterviewRepository $interviewRepository;
 
-    public function __construct(UserRepository $userRepository) {
+	public function __construct(UserRepository $userRepository, InterviewRepository $interviewRepository) {
         $this->userRepository = $userRepository;
-    }
+		$this->interviewRepository = $interviewRepository;
+	}
 
     /**
      * @param Request $request
@@ -25,8 +31,15 @@ class DashboardController extends Controller {
             $users = $this->userRepository->listUsers(User::ROLE_INTERVIEWER);
         }
 
+        if ($request->user()->role === User::ROLE_INTERVIEWER) {
+        	$upcomingInterviews = $this->interviewRepository->listUpcomingInterviews();
+        	$pastInterviews = $this->interviewRepository->listPastInterviewers();
+        }
+
         return view('dashboard', [
-            'users' => $users ?? []
+            'users' => $users ?? [],
+	        'upcomingInterviews' => $upcomingInterviews ?? [],
+	        'pastInterviews' => $pastInterviews ?? []
         ]);
     }
 }
