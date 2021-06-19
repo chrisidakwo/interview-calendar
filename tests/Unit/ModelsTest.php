@@ -2,9 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Models\Candidate;
 use App\Models\Interview;
-use App\Models\Interviewer;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,11 +11,6 @@ use Tests\TestCase;
 class ModelsTest extends TestCase {
 	use RefreshDatabase;
 
-	/**
-	 * A basic unit test example.
-	 *
-	 * @return void
-	 */
 	public function test_user_model_can_be_persisted() {
 		$candidates = User::factory()->count(3)->candidate()->create();
 

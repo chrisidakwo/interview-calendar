@@ -50,7 +50,7 @@ class InterviewController extends Controller {
     public function store(InterviewStoreRequest $request): RedirectResponse {
         $name        = $request->get('name');
         $description = $request->get('description');
-        $candidate   = $request->get('candidate');
+        $candidate   = $request->get('candidate_id');
 
         $interview = $this->interviewRepository
             ->storeInterview($name, $candidate, $description);

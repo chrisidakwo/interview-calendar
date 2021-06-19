@@ -23,18 +23,18 @@ class InterviewStoreRequest extends FormRequest {
      */
     public function rules(): array {
         return [
-            'name'      => ['required', 'string'],
-            'candidate' => ['required', 'string', 'exists:users,id']
+            'name'         => ['required', 'string'],
+            'candidate_id' => ['required', 'string', 'exists:users,id']
         ];
     }
 
     public function withValidator(Validator $validator) {
         $validator->after(function (Validator $validate) {
             // If candidate already has an interview and is not past the time slot, return error
-            $candidate = User::query()->find($this->get('candidate'));
+            $candidate = User::query()->find($this->get('candidate_id'));
 
             if ($candidate->interviews) {
-                return $validate->errors()->add('candidate', 'Candidate already has an interview schedule');
+                return $validate->errors()->add('candidate_id', 'Candidate already has an interview schedule');
             }
 
             return $validate;

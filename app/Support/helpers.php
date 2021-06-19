@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+
 /**
  * @param array $availableSlots
  * @param $day
@@ -9,9 +11,15 @@
 function checkAvailability(array $availableSlots, $day, int $startTime): bool {
     if (array_key_exists($day, $availableSlots)) {
         $slots = $availableSlots[$day];
+        $r     = 10;
 
         foreach ($slots as $key => $timeSlots) {
-            if ($startTime == (int) $timeSlots['start']) {
+            $start = Arr::get($timeSlots, 'start', Arr::get($timeSlots, 0));
+            if (is_string($start) && strpos($start, ':')) {
+                $start = (int) explode(':', $start)[0];
+            }
+
+            if ($startTime == (int) $start) {
                 return true;
             }
         }

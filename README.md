@@ -21,6 +21,7 @@ The application has three types of users: `admin`, `interviewer`, and `candidate
 - To access an interviewer account, log out of the admin and log in using any of the created interviewer record. Not forgetting to use the default password: `password`
 - An interviewer can create candidates and interviews, add candidates to interviews, and add other interviewers to an interview
 - However, to add any of this, an interviewer must have set available time slots
+- To add interviewers to an interview, click on the interview row on the interviews table.
 
 ### Candidate
 - To access a candidate account, use any the created candidate record.

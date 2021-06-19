@@ -51,7 +51,7 @@ class UserFactory extends Factory {
         return $this->state(function (array $attributes) {
             return [
                 'role'         => User::ROLE_INTERVIEWER,
-                'availability' => self::generateRandomAvailability(20),
+                'availability' => self::generateRandomAvailability(40),
             ];
         });
     }
@@ -84,9 +84,20 @@ class UserFactory extends Factory {
     }
 
     /**
+     * @param bool $generateAvailability
      * @return Factory
      */
-    public function candidate(): Factory {
-        return $this->role(User::ROLE_CANDIDATE);
+    public function candidate(bool $generateAvailability = false): Factory {
+        return $this->state(function (array $attributes) use ($generateAvailability) {
+            $attribute = [
+                'role' => User::ROLE_CANDIDATE,
+            ];
+
+            if ($generateAvailability) {
+                $attribute['availability'] = UserFactory::generateRandomAvailability(40);
+            }
+
+            return $attribute;
+        });
     }
 }

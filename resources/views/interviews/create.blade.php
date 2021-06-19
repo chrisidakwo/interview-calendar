@@ -27,7 +27,7 @@
 
                 <div class="mb-6">
                     <label for="ddlCandidate">Candidate</label>
-                    <select name="candidate" id="ddlCandidate" class="form-select" required>
+                    <select name="candidate_id" id="ddlCandidate" class="form-select" required>
                         @if(count($candidates))
                             @foreach($candidates as $candidate)
                                 <option value="{{ $candidate->id }}">{{ $candidate->name }}</option>
