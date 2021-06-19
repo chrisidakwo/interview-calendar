@@ -50,4 +50,10 @@ interface InterviewRepository {
      * @return Interview
      */
     public function updateInterviewers(Interview $interview, array $interviewers): Interview;
+
+    /**
+     * @param Interview $interview
+     * @return array
+     */
+    public function getAvailableSlots(Interview $interview): array;
 }

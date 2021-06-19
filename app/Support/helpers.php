@@ -111,7 +111,6 @@ function smallestArray($array) {
  * @return array
  */
 function getAvailableSlots($scheduleA, $scheduleB): array {
-
     // Map through schedules and remove the "start" and "end" keys
     // Time slots should use zero-based numerical indexes as keys
     $_availabilityA = [];

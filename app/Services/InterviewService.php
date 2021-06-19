@@ -87,4 +87,16 @@ class InterviewService implements InterviewRepository {
 
         return $interview->refresh()->load(['interviewers']);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAvailableSlots(Interview $interview): array {
+        // Calculate availability slots for candidate and interviewers
+        $collection        = $interview->interviewers->getAvailableSlots()->toArray();
+        $interviewersSlots = $collection[0] ?? $collection;
+        $candidateSlots    = $interview->candidate->availability;
+
+        return getAvailableSlots($interviewersSlots, $candidateSlots);
+    }
 }

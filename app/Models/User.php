@@ -23,6 +23,8 @@ class User extends UUIDModel implements AuthenticatableContract, AuthorizableCon
 
     protected $fillable = ['name', 'email', 'password', 'role', 'availability'];
 
+    protected $hidden = ['password'];
+
     protected $casts = [
         'availability' => 'array'
     ];

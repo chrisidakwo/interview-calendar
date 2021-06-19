@@ -97,14 +97,9 @@ class InterviewController extends Controller {
             return redirect()->route('interviews.schedule', ['interview' => $interview->id, 'month' => $month]);
         }
 
-        // Retrieve availability slots for candidate and interviewers
-        $collection        = $interview->interviewers->getAvailableSlots()->toArray();
-        $interviewersSlots = $collection[0] ?? $collection;
-        $candidateSlots    = $interview->candidate->availability;
+        $availableSlots = $this->interviewRepository->getAvailableSlots($interview);
 
-        $availableSlots = getAvailableSlots($interviewersSlots, $candidateSlots);
-
-        return view('interviews.schedule', compact('interview', 'month', 'selectedDay', 'availableSlots', 'candidateSlots', 'interviewersSlots'));
+        return view('interviews.schedule', compact('interview', 'month', 'selectedDay', 'availableSlots'));
     }
 
     /**

@@ -12,6 +12,8 @@ class Interview extends UUIDModel {
 
     protected $guarded = [''];
 
+    protected $hidden = ['min_booking_time', 'max_booking_time'];
+
     protected $casts = [
         'time_slot' => 'datetime'
     ];
