@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Collection\InterviewerCollection;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -9,8 +10,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class User extends UUIDModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
@@ -34,11 +35,19 @@ class User extends UUIDModel implements AuthenticatableContract, AuthorizableCon
     }
 
     /**
-     * @return BelongsTo|BelongsToMany
+     * @param array $models
+     * @return InterviewerCollection
+     */
+    public function newCollection(array $models = []): InterviewerCollection {
+        return new InterviewerCollection($models);
+    }
+
+    /**
+     * @return HasOne|BelongsToMany
      */
     public function interviews() {
         if ($this->getAttribute('role') === self::ROLE_CANDIDATE) {
-            return $this->belongsTo(Interview::class);
+            return $this->hasOne(Interview::class, 'candidate_id', 'id');
         }
 
         return $this->belongsToMany(Interview::class, 'interview_interviewers', 'interviewer_id');

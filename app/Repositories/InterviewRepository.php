@@ -3,23 +3,27 @@
 namespace App\Repositories;
 
 use App\Models\Interview;
+use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 
 interface InterviewRepository {
     /**
      * @param array $relations
+     * @param array $filters
      * @return Paginator
      */
-    public function listInterviews(array $relations = []): Paginator;
+    public function listInterviews(array $relations = [], array $filters = []): Paginator;
 
     /**
-     * @param $name
-     * @param $description
-     * @param $candidate
+     * @param string $name
+     * @param string $candidate
+     * @param string|null $description
+     * @param null $minBookingDate
+     * @param null $maxBookingDate
      * @return Model|Interview
      */
-    public function storeInterview($name, $description, $candidate);
+    public function storeInterview(string $name, string $candidate, string $description = null, $minBookingDate = null, $maxBookingDate = null);
 
     /**
      * @param array $relations
@@ -32,4 +36,11 @@ interface InterviewRepository {
      * @return Paginator
      */
     public function listPastInterviewers(array $relations = []): Paginator;
+
+    /**
+     * @param Interview $interview
+     * @param Carbon $interviewDate
+     * @return Interview
+     */
+    public function updateInterviewSchedule(Interview $interview, Carbon $interviewDate): Interview;
 }

@@ -73,10 +73,10 @@
                         @if(count($upcomingInterviews))
                             @foreach($upcomingInterviews as $upcomingInterview)
                                 <tr>
-                                    <td>{{ $upcomingInterviews->name }}</td>
-                                    <td>{{ $upcomingInterviews->candidate->name }}</td>
-                                    @if ($upcomingInterviews->time_slot)
-                                        <td>{{ $upcomingInterviews->time_slot->format('d-m-Y H:m') }}</td>
+                                    <td>{{ $upcomingInterview->name }}</td>
+                                    <td>{{ $upcomingInterview->candidate->name }}</td>
+                                    @if ($upcomingInterview->time_slot)
+                                        <td>{{ $upcomingInterview->time_slot->toDayDateTimeString() }}</td>
                                     @else
                                         <td></td>
                                     @endif
@@ -116,7 +116,7 @@
                                     <td>{{ $pastInterview->name }}</td>
                                     <td>{{ $pastInterview->candidate->name }}</td>
                                     @if ($pastInterview->time_slot)
-                                        <td>{{ $pastInterview->time_slot->format('d-m-Y H:m') }}</td>
+                                        <td>{{ $pastInterview->time_slot->toDayDateTimeString() }}</td>
                                     @else
                                         <td></td>
                                     @endif
@@ -141,8 +141,38 @@
                     <div class="title">Interview</div>
                 </div>
 
-                <div class="content">
-                    Hello world
+                <div class="content m-0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Time Slot</th>
+                            <th>Interviewers</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @if(count($interviews))
+                            @foreach($interviews as $interview)
+                                <tr>
+                                    <td>{{ $interview->name }}</td>
+                                    @if ($interview->time_slot)
+                                        <td>{{ $interview->time_slot->toDayDateTimeString() }}</td>
+                                    @else
+                                        <td>
+                                            <a href="{{ route('interviews.schedule', $interview->id) }}" class="border border-indigo-600 text-indigo-600 px-4 py-1 rounded-2xl hover:text-white hover:bg-indigo-600 transition-all duration-300">Select a time</a>
+                                        </td>
+                                    @endif
+                                    <td>{{ implode(',', $interview->interviewers->pluck('name')->toArray()) }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="3" class="text-center">No past interviewers</td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

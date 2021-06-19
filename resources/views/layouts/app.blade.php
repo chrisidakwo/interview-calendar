@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{{ asset('fonts/Gilroy Web/stylesheet.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <script defer src="{{ asset('js/alpine.min.js') }}"></script>
+    @stack('css')
 </head>
 <body class="antialiased">
 
-<div class="container">
+<div class="">
     <div class="md:flex md:flex-col">
         <div class="md:h-screen md:flex md:flex-col">
 
@@ -54,5 +54,7 @@
         </div>
     </div>
 </div>
+
+@stack('js')
 </body>
 </html>

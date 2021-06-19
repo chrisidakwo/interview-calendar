@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InterviewStoreRequest extends FormRequest {
@@ -24,5 +26,18 @@ class InterviewStoreRequest extends FormRequest {
             'name'      => ['required', 'string'],
             'candidate' => ['required', 'string', 'exists:users,id']
         ];
+    }
+
+    public function withValidator(Validator $validator) {
+        $validator->after(function (Validator $validate) {
+            // If candidate already has an interview and is not past the time slot, return error
+            $candidate = User::query()->find($this->get('candidate'));
+
+            if ($candidate->interviews) {
+                return $validate->errors()->add('candidate', 'Candidate already has an interview schedule');
+            }
+
+            return $validate;
+        });
     }
 }

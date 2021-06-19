@@ -21,7 +21,7 @@
                         <div class="inline">
                             @foreach($slots as $slot)
                                 <label class="mt-6 mr-8 w-32 select-none">
-                                    <input class="mr-1" type="checkbox" name="slots[{{ $day }}][{{ (int) $slot['start_time'] }}]" @if(checkAvailability($availabilitySlots, $day, (int) $slot['start_time'])) checked @endif />
+                                    <input class="mr-1" type="checkbox" name="slots[{{ $day }}][{{ (int) $slot['start_time'] }}]" @if(checkAvailability($availabilitySlots ?: [], $day, (int) $slot['start_time'])) checked @endif />
                                     <span class="text-sm">{{ $slot['start_time'] }} - {{ $slot['end_time'] }}</span>
                                 </label>
                             @endforeach

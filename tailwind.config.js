@@ -52,9 +52,10 @@ module.exports = {
     },
   },
   corePlugins: {
+    container: false,
     gradientColorStops: false,
-    placeholderColor  : false,
-    verticalAlign     : false,
+    placeholderColor: false,
+    verticalAlign: false,
     float: false,
     clear: false,
     placeholderOpacity: false,
@@ -93,5 +94,9 @@ module.exports = {
     blur: false,
     backgroundBlendMode: false
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-bootstrap-grid')({
+      containerMaxWidths: { sm: '540px', md: '720px', lg: '960px', xl: '1140px' },
+    })
+  ],
 }

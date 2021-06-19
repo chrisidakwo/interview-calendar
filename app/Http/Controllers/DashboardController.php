@@ -36,8 +36,13 @@ class DashboardController extends Controller {
             $pastInterviews     = $this->interviewRepository->listPastInterviewers();
         }
 
+        if ($request->user()->role === User::ROLE_CANDIDATE) {
+            $interviews = $this->interviewRepository->listInterviews(['interviewers'], [['candidate_id', auth()->id()]]);
+        }
+
         return view('dashboard', [
             'users'              => $users ?? [],
+            'interviews'         => $interviews ?? [],
             'upcomingInterviews' => $upcomingInterviews ?? [],
             'pastInterviews'     => $pastInterviews ?? []
         ]);

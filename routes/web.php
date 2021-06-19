@@ -19,8 +19,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews');
 
-    Route::group(['middleware' => ['role:candidate'], 'prefix' => 'interviews'], function () {
-        Route::put('/schedule', [InterviewController::class, 'schedule'])->name('interviews.schedule');
+    Route::group(['middleware' => ['role:candidate', 'availability'], 'prefix' => 'interviews'], function () {
+        Route::get('/{interview}/schedule', [InterviewController::class, 'showScheduleForm'])->name('interviews.schedule');
+        Route::post('/{interview}/schedule', [InterviewController::class, 'schedule'])->name('interviews.schedule');
+    });
+
+    Route::group(['middleware' => ['role:candidate,interviewer'], 'prefix' => 'interviews'], function () {
+        Route::get('/set-availability', [AvailabilityController::class, 'viewCreateForm'])->name('availability.create');
+        Route::post('/set-availability', [AvailabilityController::class, 'store'])->name('availability.store');
     });
 
     Route::group(['middleware' => ['role:admin,interviewer']], function () {
@@ -42,7 +48,5 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/candidates/{candidate}', [CandidateController::class, 'show'])->name('candidates.show');
 
         Route::get('/availability', [AvailabilityController::class, 'index'])->name('availability');
-        Route::get('/set-availability', [AvailabilityController::class, 'viewCreateForm'])->name('availability.create');
-        Route::post('/set-availability', [AvailabilityController::class, 'store'])->name('availability.store');
     });
 });

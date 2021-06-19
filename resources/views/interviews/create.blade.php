@@ -21,7 +21,8 @@
 
                 <div class="mb-6">
                     <label for="txtDescription">Description</label>
-                    <textarea id="txtDescription" class="form-input" name="description">{{ old('description') }}</textarea>
+                    <textarea id="txtDescription" class="form-input"
+                              name="description">{{ old('description') }}</textarea>
                 </div>
 
                 <div class="mb-6">

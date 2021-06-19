@@ -12,6 +12,10 @@ class Interview extends UUIDModel {
 
     protected $guarded = [''];
 
+    protected $casts = [
+        'time_slot' => 'datetime'
+    ];
+
     /**
      * @return InterviewFactory
      */
