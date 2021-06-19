@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InterviewStoreRequest;
 use App\Http\Requests\StoreInterviewScheduleRequest;
+use App\Http\Requests\UpdateInterviewRequest;
 use App\Models\Interview;
 use App\Models\User;
 use App\Repositories\InterviewRepository;
@@ -47,14 +48,36 @@ class InterviewController extends Controller {
      * @return RedirectResponse
      */
     public function store(InterviewStoreRequest $request): RedirectResponse {
-        $name           = $request->get('name');
-        $description    = $request->get('description');
-        $candidate      = $request->get('candidate');
+        $name        = $request->get('name');
+        $description = $request->get('description');
+        $candidate   = $request->get('candidate');
 
         $interview = $this->interviewRepository
             ->storeInterview($name, $candidate, $description);
 
         session()->flash('success', 'Interview created for ' . $interview->candidate->name);
+
+        return redirect()->route('interviews');
+    }
+
+    public function show(Request $request, Interview $interview) {
+        $interviewers = User::query()->where('role', User::ROLE_INTERVIEWER)
+            ->where('id', '!=', auth()->id())->get();
+
+        return view('interviews.show', compact('interview', 'interviewers'));
+    }
+
+    /**
+     * @param UpdateInterviewRequest $request
+     * @param Interview $interview
+     * @return RedirectResponse
+     */
+    public function update(UpdateInterviewRequest $request, Interview $interview): RedirectResponse {
+        $interviewers = $request->get('interviewers');
+
+        $this->interviewRepository->updateInterviewers($interview, $interviewers);
+
+        session()->flash('success', 'Interviewers added!');
 
         return redirect()->route('interviews');
     }
@@ -65,9 +88,6 @@ class InterviewController extends Controller {
      * @return Application|Factory|View|RedirectResponse
      */
     public function showScheduleForm(Request $request, Interview $interview) {
-        $a = User::query()->whereEmail('chris.idakwo@gmail.com')->first()->availability;
-        $b = User::query()->whereEmail('daizyodurukwe@gmail.com')->first()->availability;
-
         $selectedDay = $request->query('day');
         $month       = $request->query('month');
 

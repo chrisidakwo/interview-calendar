@@ -73,4 +73,18 @@ class InterviewService implements InterviewRepository {
 
         return $interview;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function updateInterviewers(Interview $interview, array $interviewers): Interview {
+        foreach ($interviewers as $interviewer) {
+            DB::table('interview_interviewers')->updateOrInsert([
+                'interview_id'   => $interview->id,
+                'interviewer_id' => $interviewer
+            ]);
+        }
+
+        return $interview->refresh()->load(['interviewers']);
+    }
 }

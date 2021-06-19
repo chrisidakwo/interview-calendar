@@ -43,4 +43,11 @@ interface InterviewRepository {
      * @return Interview
      */
     public function updateInterviewSchedule(Interview $interview, Carbon $interviewDate): Interview;
+
+    /**
+     * @param Interview $interview
+     * @param array $interviewers
+     * @return Interview
+     */
+    public function updateInterviewers(Interview $interview, array $interviewers): Interview;
 }

@@ -36,7 +36,7 @@
                     <tbody>
                     @if(count($interviews))
                         @foreach($interviews as $interview)
-                            <tr>
+                            <tr class="cursor-pointer" onclick="window.location.href = '{{ route('interviews.show', $interview->id) }}'">
                                 <td>{{ $interview->name }}</td>
                                 <td>{{ $interview->candidate->name }}</td>
                                 @if ($interview->time_slot)
@@ -45,7 +45,7 @@
                                     <td></td>
                                 @endif
                                 @if ($interview->interviewers)
-                                    <td>{{ implode(',', $interview->OtherInterviewers(auth()->id())) }}</td>
+                                    <td>{{ implode(', ', $interview->OtherInterviewers(auth()->id())) }}</td>
                                 @endif
                             </tr>
                         @endforeach

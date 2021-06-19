@@ -17,8 +17,6 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews');
-
     Route::group(['middleware' => ['role:candidate', 'availability'], 'prefix' => 'interviews'], function () {
         Route::get('/{interview}/schedule', [InterviewController::class, 'showScheduleForm'])->name('interviews.schedule');
         Route::post('/{interview}/schedule', [InterviewController::class, 'schedule'])->name('interviews.schedule');
@@ -40,8 +38,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['role:interviewer']], function () {
+        Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews');
         Route::get('/interviews/new', [InterviewController::class, 'create'])->name('interviews.create');
         Route::post('/interviews/new', [InterviewController::class, 'store'])->name('interviews.store');
+        Route::get('/interviews/{interview}', [InterviewController::class, 'show'])->name('interviews.show');
+        Route::post('/interviews/{interview}', [InterviewController::class, 'update'])->name('interviews.update');
 
         Route::get('/candidates', [UserController::class, 'index'])->name('candidates');
         Route::get('/candidates/new', [UserController::class, 'create'])->name('candidates.create');
