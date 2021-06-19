@@ -98,7 +98,8 @@ class InterviewController extends Controller {
         }
 
         // Retrieve availability slots for candidate and interviewers
-        $interviewersSlots = $interview->interviewers->getAvailableSlots()->toArray()[0];
+        $collection        = $interview->interviewers->getAvailableSlots()->toArray();
+        $interviewersSlots = $collection[0] ?? $collection;
         $candidateSlots    = $interview->candidate->availability;
 
         $availableSlots = getAvailableSlots($interviewersSlots, $candidateSlots);

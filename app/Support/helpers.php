@@ -111,12 +111,13 @@ function smallestArray($array) {
  * @return array
  */
 function getAvailableSlots($scheduleA, $scheduleB): array {
+
     // Map through schedules and remove the "start" and "end" keys
     // Time slots should use zero-based numerical indexes as keys
     $_availabilityA = [];
     foreach ($scheduleA as $dayNumber => $a) {
         foreach ($a as $slots) {
-            $_availabilityA[$dayNumber][] = [$slots['start'], $slots['end']];
+            $_availabilityA[$dayNumber][] = [$slots['start'] ?? $slots[0], $slots['end'] ?? $slots[1]];
         }
     }
 
@@ -134,6 +135,10 @@ function getAvailableSlots($scheduleA, $scheduleB): array {
     $group       = [$_availabilityA, $_availabilityB];
     $largestArr  = largestArray($group);
     $smallestArr = smallestArray($group);
+
+    if (empty($smallestArr)) {
+        $smallestArr = $largestArr;
+    }
 
     // Loop through the larger array to enable covering all possible time slots
     foreach ($largestArr as $dayNumber => $availability) {
